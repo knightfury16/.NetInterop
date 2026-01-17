@@ -5,6 +5,10 @@ bin/myfunc: myfunc.c
 clean:
 	rm -rf bin
 
+brun:
+	gcc myfunc.c -o bin/myfunc
+	bin/myfunc
+
 run:
 	bin/myfunc
 
