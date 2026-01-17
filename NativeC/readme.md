@@ -37,3 +37,7 @@ export DYLD_LIBRARY_PATH=/Users/Code/dotnet-interop/NativeC:$DYLD_LIBRARY_PATH
 `
 
 2. Static Linking
+
+With static linking, everything is bundled into one executable. 
+
+
