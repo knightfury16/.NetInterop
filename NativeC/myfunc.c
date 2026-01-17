@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+void Greet(char *name) { printf("Hello from shared library %s\n", name); }
 
-  printf("Hello world\n");
-  return 0;
-}
+int AddTwoNumb(int a, int b) { return a + b; }
