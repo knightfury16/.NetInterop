@@ -35,6 +35,7 @@ endif
 # Macos OS specific override
 ifeq ($(detected_os),Windows)
     LIB_EXT = .exe
+	@copy "$(subst /,\,$(LIB_DIR))\libmyfunc.dll" "bin\" >nul
     # LIB_FLAGS = -shared -install_name @rpath/$(LIB_NAME)$(LIB_EXT)
 endif
 
