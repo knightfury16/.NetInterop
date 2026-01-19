@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeInterop", "NativeInterop\NativeInterop.csproj", "{9294AB64-3045-4855-A59C-4B8400FFCA67}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{DE985A80-F3D5-4485-A485-7F2750170414}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,6 +16,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE985A80-F3D5-4485-A485-7F2750170414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE985A80-F3D5-4485-A485-7F2750170414}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9294AB64-3045-4855-A59C-4B8400FFCA67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9294AB64-3045-4855-A59C-4B8400FFCA67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9294AB64-3045-4855-A59C-4B8400FFCA67}.Release|Any CPU.ActiveCfg = Release|Any CPU
