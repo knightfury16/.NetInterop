@@ -13,6 +13,7 @@ CFLAGS = -Wall -Wextra -I
 LIB_NAME = libmyfunc
 SRC = myfunc.c
 MKDIR := mkdir 
+RM := rm -r
 
 # Default Linux Value
 
@@ -27,8 +28,10 @@ ifeq ($(detected_os),Windows)
     LIB_EXT = .dll
     EXE_EXT = .exe
     MKDIR +=  -f
+    RM += --force
 else
     MKDIR += -p
+    RM += -f
 endif
 
 
@@ -44,7 +47,7 @@ bin/$(LIB_NAME): $(SRC)
 	$(CC) $(SRC) $(LIB_FLAGS) -o bin/$(LIB_NAME)$(LIB_EXT)
 
 clean:
-	rm -rf bin
+	$(RM) bin
 
 
 # bstatic:
