@@ -13,7 +13,7 @@ CFLAGS = -Wall -Wextra -I
 LIB_NAME = libmyfunc
 SRC = myfunc.c
 MKDIR := mkdir 
-RM := rm -r
+RM := rm -rf
 
 # Default Linux Value
 
@@ -28,10 +28,9 @@ ifeq ($(detected_os),Windows)
     LIB_EXT = .dll
     EXE_EXT = .exe
     MKDIR +=  -f
-    RM += --force
+    RM = Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
 else
     MKDIR += -p
-    RM += -f
 endif
 
 
