@@ -8,8 +8,16 @@
   </PropertyGroup>
 
     <ItemGroup >
-        <Content Include="../NativeC/bin/libmyfunc.dylib">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <Content Include="../NativeC/bin/libmyfunc.dylib" Condition="Exists('../NativeC/bin/libmyfunc.dylib')">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+
+        <Content Include="../NativeC/bin/libmyfunc.dll" Condition="Exists('../NativeC/bin/libmyfunc.dll')">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+
+        <Content Include="../NativeC/bin/libmyfunc.so" Condition="Exists('../NativeC/bin/libmyfunc.so')">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
     </ItemGroup>
 
