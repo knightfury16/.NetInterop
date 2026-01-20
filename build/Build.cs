@@ -75,6 +75,7 @@ class Build : NukeBuild
 
     Target Compile => _ => _
         .DependsOn(Restore)
+        .DependsOn(BuildNative)
         .Executes(() =>
         {
             DotNetBuild(s => s
