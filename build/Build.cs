@@ -43,6 +43,8 @@ class Build : NukeBuild
     Target Restore => _ => _
         .Executes(() =>
         {
+            DotNetRestore(s => s
+                    .SetProjectFile(Solution));
         });
 
     // Build the native file first
@@ -76,9 +78,9 @@ class Build : NukeBuild
         .Executes(() =>
         {
             DotNetBuild(s => s
-                            .SetProjectFile(Solution.GetProject("NativeInterop"))
-                            .SetConfiguration(Configuration));
-            // .EnableNoRestore());
+                            .SetProjectFile(Solution)
+                            .SetConfiguration(Configuration)
+                            .EnableNoRestore());
         });
 
 }
