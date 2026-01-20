@@ -33,6 +33,7 @@ class Build : NukeBuild
     AbsolutePath NativeSourceDirectory => RootDirectory / "NativeC";
     AbsolutePath NativeInteropSourceDirectory => RootDirectory / "NativeInterop";
     const string NativeLibraryName = "libmyfunc";
+    Project ProjectToRun => Solution.GetProject("NativeInterop");
 
     Target Clean => _ => _
         .Before(Restore)
@@ -84,4 +85,14 @@ class Build : NukeBuild
                             .EnableNoRestore());
         });
 
+
+    Target Run => _ => _
+        .DependsOn(Compile)
+        .Executes(() =>
+        {
+            DotNetRun(s => s
+                            .SetProjectFile(ProjectToRun)
+                            .SetConfiguration(Configuration)
+                            .EnableNoBuild());
+        });
 }

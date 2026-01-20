@@ -75,7 +75,8 @@
               "BuildNative",
               "Clean",
               "Compile",
-              "Restore"
+              "Restore",
+              "Run"
             ]
           }
         },
@@ -92,7 +93,8 @@
               "BuildNative",
               "Clean",
               "Compile",
-              "Restore"
+              "Restore",
+              "Run"
             ]
           }
         },
