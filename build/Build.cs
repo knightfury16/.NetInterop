@@ -12,6 +12,8 @@ using static Nuke.Common.EnvironmentInfo;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.IO.PathConstruction;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
+using static Nuke.Common.Tooling.ProcessTasks;
+using System.Runtime.InteropServices;
 
 class Build : NukeBuild
 {
@@ -28,6 +30,10 @@ class Build : NukeBuild
 
     [Solution] readonly Solution Solution;
 
+    AbsolutePath NativeSourceDirectory => RootDirectory / "NativeC";
+    AbsolutePath NativeInteropSourceDirectory => RootDirectory / "NativeInterop";
+    const string NativeLibraryName = "libmyfunc";
+
     Target Clean => _ => _
         .Before(Restore)
         .Executes(() =>
@@ -39,14 +45,40 @@ class Build : NukeBuild
         {
         });
 
+    // Build the native file first
+    Target BuildNative => _ => _
+        .Executes(() =>
+        {
+            // Compile the native library
+            StartProcess("make", workingDirectory: NativeSourceDirectory).AssertZeroExitCode();
+
+            //detec os
+            string libraryName = NativeLibraryName;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) libraryName += ".so";
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)) libraryName += ".dylib";
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) libraryName += ".dll";
+            else throw new Exception("OS not supported for native build");
+
+            var sourceFile = NativeSourceDirectory / "bin" / libraryName;
+
+            var destinationFile = NativeInteropSourceDirectory / libraryName;
+
+
+            // Copy the file from source to destination 
+            CopyFile(sourceFile, destinationFile, FileExistsPolicy.Overwrite);
+
+            Console.WriteLine($"Successfully copied {libraryName} to {NativeInteropSourceDirectory}");
+
+        });
+
     Target Compile => _ => _
         .DependsOn(Restore)
         .Executes(() =>
         {
             DotNetBuild(s => s
                             .SetProjectFile(Solution.GetProject("NativeInterop"))
-                            .SetConfiguration(Configuration)
-                            .EnableNoRestore());
+                            .SetConfiguration(Configuration));
+            // .EnableNoRestore());
         });
 
 }
