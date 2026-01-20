@@ -39,6 +39,11 @@ class Build : NukeBuild
         .Before(Restore)
         .Executes(() =>
         {
+            //Clean dotnet stuff
+            NativeInteropSourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(dir => dir.DeleteDirectory());
+
+            //Clean native c stuff
+            StartProcess("make", "clean", NativeSourceDirectory).AssertZeroExitCode();
         });
 
     Target Restore => _ => _
