@@ -44,3 +44,14 @@ To build the entire project (including restoring packages and compiling native d
 ```bash
 ./build.sh Compile
 ```
+
+## Available Targets
+You can run specific targets individually if needed:
+
+| Target | Description |
+| :--- | :--- |
+| **Compile** | (Default) Restores packages, builds native dependencies, and compiles the .NET solution. |
+| **Run** | Compiles and executes the application. |
+| **Clean** | Cleans bin, obj, and artifacts directories. |
+| **Restore** | Explicitly restores .NET NuGet packages. |
+| **BuildNative** | Explicitly compiles only the native C/C++ dependencies. |
