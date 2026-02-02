@@ -22,3 +22,19 @@ A hybrid language. You write C++ code that can compile into .NET bytecode. It ac
 
 Best for: Wrapping complex C++ class libraries where P/Invoke would be too messy.
 
+
+
+## How to Build
+
+This project uses [NUKE](https://nuke.build/) for its build system. You can build the project using the provided scripts in the root directory.
+
+### Prerequisites
+* **.NET SDK** (Ensure you have the version matching the project requirements)
+* **C++ Build Tools** (Required for the native dependencies)
+
+### Quick Start
+To build the entire project (including restoring packages and compiling native dependencies), run the **Compile** target:
+
+**Windows:**
+```powershell
+.\build.cmd Compile
