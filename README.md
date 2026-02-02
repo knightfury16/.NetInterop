@@ -38,7 +38,9 @@ To build the entire project (including restoring packages and compiling native d
 **Windows:**
 ```powershell
 .\build.cmd Compile
+```
 
 **Linux:**
-```
+```bash
 ./build.sh Compile
+```
